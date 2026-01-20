@@ -13,7 +13,6 @@
 // Optional stretch:
 // import './components/resource-item.js';
 
-
 // --------------------------------------------------
 // STEP 2: Replace markup in index.html with custom elements
 // --------------------------------------------------
@@ -29,7 +28,6 @@
 //
 // At that point the page will be empty until each component renders.
 
-
 // --------------------------------------------------
 // STEP 3: (Later) Add data and interaction
 // --------------------------------------------------
@@ -40,7 +38,6 @@
 // - Render the results list from data
 // - Emit a custom event from <resource-results> when a result is selected
 // - Update <resource-details> when a selection event is received
-
 
 // --------------------------------------------------
 // Helpful: starter data shape for later
