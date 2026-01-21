@@ -1,3 +1,5 @@
+const template = document.createElement('template');
+template.innerHTML = `
 <header class='mb-4'>
   <div class='d-flex flex-wrap justify-content-between align-items-end gap-2'>
     <div>
@@ -7,4 +9,13 @@
       </p>
     </div>
   </div>
-</header>;
+</header>;`;
+
+class ResourceHeader extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+}
+
+customElements.define('resource-header', ResourceHeader);
