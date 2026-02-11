@@ -1,7 +1,11 @@
 export default function Details() {
   return (
     <section className="h-full">
-      <div className="h-full rounded border border-gray-200 bg-white shadow-sm">
+      {/*
+        Styling adjustments: I need flexbox behaviour to relatively align the button group to the bottom.
+          flex-col means that things proceed down 1 column (flex is flex-row by default, i.e. proceed horizontally)
+      */}
+      <div className="flex flex-col h-full rounded border border-gray-200 bg-white shadow-sm">
         <div className="border-b border-gray-200 px-4 py-3">
           <strong className="text-sm text-gray-900">Details</strong>
         </div>
@@ -27,7 +31,8 @@ export default function Details() {
           </dl>
         </div>
 
-        <div className="flex gap-2 border-t border-gray-200 px-4 py-3">
+        {/* "Take all leftover space and make that the top margin for this div" */}
+        <div className="mt-auto flex gap-2 border-t border-gray-200 px-4 py-3">
           <button
             type="button"
             className="rounded border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50"
