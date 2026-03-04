@@ -1,4 +1,6 @@
 export default function ResultsItem({ title, category, summary, location, children, onClick, selected }) {
+  // NOTE: basic state has been implemented in ResultsItem;
+  //       we're just using it to show which resource is selected
   return (
     <li onClick={onClick} className={`px-4 py-3 text-gray-900 hover:bg-gray-50 cursor-pointer ${selected ? 'bg-sky-50' : ''}`}>
       <div className="flex items-start justify-between gap-3">
