@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { useSelectedResource } from './hooks/useSelectedResource';
+
 import Header from './components/Header';
 import Filters from './components/Filters';
 import Results from './components/Results';
@@ -10,12 +12,14 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [openNowOnly, setOpenNowOnly] = useState(false);
-  const [selectedResource, setSelectedResource] = useState(null);
+  const [selectedResource, setSelectedResource] = useSelectedResource(null);
   const [virtualOnly, setVirtualOnly] = useState(false);
 
   return (
-    <PageLayout header={<Header tagline="Find the right resources, right away" />}>
-      <aside className="md:col-span-3 lg:col-span-1">
+    <PageLayout
+      header={<Header tagline='Find the right resources, right away' />}
+    >
+      <aside className='md:col-span-3 lg:col-span-1'>
         <Filters
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
@@ -27,7 +31,7 @@ function App() {
           onVirtualOnlyChange={setVirtualOnly}
         />
       </aside>
-      <section className="md:col-span-2 lg:col-span-1">
+      <section className='md:col-span-2 lg:col-span-1'>
         <Results
           selectedResource={selectedResource}
           onSelectResource={setSelectedResource}
@@ -37,11 +41,11 @@ function App() {
           virtualOnly={virtualOnly}
         />
       </section>
-      <aside className="md:col-span-1 lg:col-span-1">
+      <aside className='md:col-span-1 lg:col-span-1'>
         {selectedResource ? (
           <Details resource={selectedResource} />
         ) : (
-          <div className="text-sm text-base-content/70">
+          <div className='text-sm text-base-content/70'>
             Select a resource to view details.
           </div>
         )}
