@@ -19,7 +19,29 @@ const STORAGE_KEY = 'selectedResource'
 export function useSelectedResource() {
 
 	const [selectedResource, setSelectedResource] = useState(
-		null // We are going update this initial value so it reads from persistent storage.
+		/* Instead of a hardcoded default value, we'll read initial state from sessionStorage.
+		   
+		   Rather than just delivering that value as a one-off, we'll write a callback function
+		   to also a bit of safety-checking when reading the value (bc e.g. sessionStorage isn't protected
+		   the same way React state is; logic elsewhere could overwrite the value at that same key).
+		*/
+		() => {
+			// return a value or null
+			const stored = sessionStorage.getItem(STORAGE_KEY)
+
+			if (stored) {
+				try {
+					return JSON.parse(stored) // parse from JSON into JS object
+				} catch {
+					// I know I don't need to write "return null"; I can just write "return".
+					// Here, I'm choosing to be explicit, because I'm deliberately returning that value,
+					// rather than just using 'return' as a way to escape scope of logic.
+					return null;
+				}
+			}
+
+			return null;
+		}
 	);
 
 	function updateSelectedResource(resource) {
