@@ -3,7 +3,17 @@ import { useState } from 'react';
 const STORAGE_KEY = 'selectedResource';
 
 export function useSelectedResource() {
-  const [selectedResource, setSelectedResource] = useState(null);
+  const [selectedResource, setSelectedResource] = useState(() => {
+    const stored = sessionStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  });
 
   function updateSelectedResource(resource) {
     setSelectedResource(resource);
